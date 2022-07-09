@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<Target Name="CopyTestFile" AfterTargets="Build">
+		<ItemGroup>
+			<DataFiles Include="$(ProjectDir)\AsyncVsSync*.*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(DataFiles)" DestinationFolder="$(SolutionDir)\Async\bin\Debug\net6.0" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(DataFiles)" DestinationFolder="$(SolutionDir)\Sync\bin\Debug\net6.0" SkipUnchangedFiles="true" />
+	</Target>
+
+	<ItemGroup>
+	  <None Update="AsyncVsSync.txt">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+</Project>
